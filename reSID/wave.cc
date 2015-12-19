@@ -76,7 +76,7 @@ void WaveformGenerator::writeFREQ_LO(reg8 freq_lo)
 
 void WaveformGenerator::writeFREQ_HI(reg8 freq_hi)
 {
-  freq = ((freq_hi << 8) & 0xff00) | (freq & 0x00ff);
+  freq = (((unsigned int) freq_hi << 8) & 0xff00) | (freq & 0x00ff);
 }
 
 void WaveformGenerator::writePW_LO(reg8 pw_lo)
@@ -86,7 +86,7 @@ void WaveformGenerator::writePW_LO(reg8 pw_lo)
 
 void WaveformGenerator::writePW_HI(reg8 pw_hi)
 {
-  pw = ((pw_hi << 8) & 0xf00) | (pw & 0x0ff);
+  pw = (((unsigned int)pw_hi << 8) & 0xf00) | (pw & 0x0ff);
 }
 
 void WaveformGenerator::writeCONTROL_REG(reg8 control)
