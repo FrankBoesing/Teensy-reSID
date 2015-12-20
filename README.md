@@ -1,3 +1,3 @@
 # Teensy-reSID
 
-SID Emulation for Teensy 3.x
+Commodore C64 SID Emulation for Teensy 3.x
