@@ -28,7 +28,7 @@
 #include "reSID.h"
 #include <AudioStream.h>
 
-#define OVERSAMPLE 24
+#define OVERSAMPLE 20
 
 static SID sid;
 
@@ -50,7 +50,7 @@ void AudioPlaySID::reset(void)
 void AudioPlaySID::stop(void)
 {
 	__disable_irq();
-	playing = false;
+	playing = false;	
 	__enable_irq();
 }
 
@@ -59,11 +59,9 @@ void AudioPlaySID::setreg(int ofs, int val) {
 }
 
 void AudioPlaySID::update(void) {
-unsigned int i, n;
+unsigned int i;
 	audio_block_t *block;
 
-	static cycle_count delta_t;
-	
 	// only update if we're playing
 	if (!playing) return;
 
