@@ -55,7 +55,7 @@ const bool false = 0;
 // cycle_count, and sound_sample). GNU does not support 16-bit machines
 // (GNU Coding Standards: Portability between CPUs), so this should be
 // a valid assumption.
-#include <arduino.h>
+#include <Arduino.h>
 typedef uint16_t reg4;
 typedef uint16_t reg8;
 typedef uint16_t reg12;
