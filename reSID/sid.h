@@ -2,9 +2,9 @@
 //  This file is part of reSID, a MOS6581 SID emulator engine.
 //  Copyright (C) 2004  Dag Lem <resid@nimrod.no>
 //
-//  This program is free software; you can redistribute it and/or modify
+//  This program is free float; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation; either version 2 of the License, or
+//  the Free float Foundation; either version 2 of the License, or
 //  (at your option) any later version.
 //
 //  This program is distributed in the hope that it will be useful,
@@ -13,7 +13,7 @@
 //  GNU General Public License for more details.
 //
 //  You should have received a copy of the GNU General Public License
-//  along with this program; if not, write to the Free Software
+//  along with this program; if not, write to the Free float
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //  ---------------------------------------------------------------------------
 
@@ -37,10 +37,10 @@ public:
   void set_chip_model(chip_model model);
   void enable_filter(bool enable);
   void enable_external_filter(bool enable);
-  bool set_sampling_parameters(double clock_freq, sampling_method method,
-			       double sample_freq, double pass_freq = -1,
-			       double filter_scale = 0.97);
-  void adjust_sampling_frequency(double sample_freq);
+  bool set_sampling_parameters(float clock_freq, sampling_method method,
+			       float sample_freq, float pass_freq = -1,
+			       float filter_scale = 0.97);
+  void adjust_sampling_frequency(float sample_freq);
 
   void fc_default(const fc_point*& points, int& count);
   PointPlotter<sound_sample> fc_plotter();
@@ -89,7 +89,7 @@ public:
   int output(int bits);
 
 protected:
-  static double I0(double x);
+  static float I0(float x);
   RESID_INLINE int clock_fast(cycle_count& delta_t, short* buf, int n,
 			      int interleave);
   RESID_INLINE int clock_interpolate(cycle_count& delta_t, short* buf, int n,
@@ -108,7 +108,7 @@ protected:
   reg8 bus_value;
   cycle_count bus_value_ttl;
 
-  double clock_frequency;
+  float clock_frequency;
 
   // External audio input.
   int ext_in;

@@ -46,9 +46,9 @@ void ExternalFilter::enable_filter(bool enable)
 // ----------------------------------------------------------------------------
 // Setup of the external filter sampling parameters.
 // ----------------------------------------------------------------------------
-void ExternalFilter::set_sampling_parameter(double pass_freq)
+void ExternalFilter::set_sampling_parameter(float pass_freq)
 {
-  static const double pi = 3.1415926535897932385;
+  static const float pi = 3.1415926535897932385;
 
   // Low-pass:  R = 10kOhm, C = 1000pF; w0l = 1/RC = 1/(1e4*1e-9) = 100000
   // High-pass: R =  1kOhm, C =   10uF; w0h = 1/RC = 1/(1e3*1e-5) =    100

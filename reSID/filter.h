@@ -460,7 +460,7 @@ void Filter::clock(cycle_count delta_t,
     // Vhp = Vbp/Q - Vlp - Vi;
     // dVbp = -w0*Vhp*dt;
     // dVlp = -w0*Vbp*dt;
-    sound_sample w0_delta_t = w0_ceil_dt*delta_t_flt >> 6;
+    sound_sample w0_delta_t = w0_ceil_dt * delta_t_flt >> 6;
 
     sound_sample dVbp = (w0_delta_t*Vhp >> 14);
     sound_sample dVlp = (w0_delta_t*Vbp >> 14);

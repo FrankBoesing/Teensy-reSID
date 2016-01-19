@@ -43,7 +43,7 @@ public:
   ExternalFilter();
 
   void enable_filter(bool enable);
-  void set_sampling_parameter(double pass_freq);
+  void set_sampling_parameter(float pass_freq);
   void set_chip_model(chip_model model);
 
   RESID_INLINE void clock(sound_sample Vi);
