@@ -34,7 +34,7 @@ public:
   SID();
   ~SID();
 
-  void set_chip_model(chip_model model);
+  //void set_chip_model(chip_model model);
   void enable_filter(bool enable);
   void enable_external_filter(bool enable);
   bool set_sampling_parameters(float clock_freq, sampling_method method,

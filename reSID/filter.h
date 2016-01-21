@@ -126,7 +126,7 @@ public:
   Filter();
 
   void enable_filter(bool enable);
-  void set_chip_model(chip_model model);
+ // void set_chip_model(chip_model model);
 
   RESID_INLINE
   void clock(sound_sample voice1, sound_sample voice2, sound_sample voice3,
@@ -191,10 +191,10 @@ protected:
   // Cutoff frequency tables.
   // FC is an 11 bit register.
   sound_sample f0_6581[2048];
-  sound_sample f0_8580[2048];
+  //sound_sample f0_8580[2048];
   sound_sample* f0;
   const static fc_point f0_points_6581[];
-  const static fc_point f0_points_8580[];
+  //const static fc_point f0_points_8580[];
   const fc_point* f0_points;
   int f0_count;
 

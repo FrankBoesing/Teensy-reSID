@@ -11,7 +11,7 @@
 	GNU General Public License for more details.
 	You should have received a copy of the GNU General Public License
 	along with this library.  If not, see <http://www.gnu.org/licenses/>.
-	The helix decoder itself as a different license, look at the subdirectories for more info.
+	
 	Diese Bibliothek ist freie Software: Sie können es unter den Bedingungen
 	der GNU General Public License, wie von der Free Software Foundation,
 	Version 3 der Lizenz oder (nach Ihrer Wahl) jeder neueren
@@ -22,23 +22,21 @@
 	Siehe die GNU General Public License für weitere Details.
 	Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
 	Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
-	Der Helixdecoder selbst hat eine eigene Lizenz, bitte für mehr Informationen
-	in den Unterverzeichnissen nachsehen.
+
  */
 #include "reSID.h"
 #include <AudioStream.h>
 
-#define OVERSAMPLE 20
+#define OVERSAMPLE 23
 
 static SID sid;
 
 void AudioPlaySID::begin(void)
 {
 	this->reset();
-	 sid.set_sampling_parameters(OVERSAMPLE * 44117, SAMPLE_FAST, 44117); 
+	 sid.set_sampling_parameters(OVERSAMPLE * AUDIO_SAMPLE_RATE_EXACT, SAMPLE_FAST, AUDIO_SAMPLE_RATE_EXACT); 
 	//sid.set_chip_model(MOS6581);
-	sid.set_chip_model(MOS8580);
- 
+	//sid.set_chip_model(MOS8580); 
 	playing = true;
 }
 
@@ -54,6 +52,7 @@ void AudioPlaySID::stop(void)
 	__enable_irq();
 }
 
+//inline 
 void AudioPlaySID::setreg(int ofs, int val) {
 	sid.write(ofs, val);
 }

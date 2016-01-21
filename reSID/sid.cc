@@ -74,6 +74,7 @@ SID::~SID()
 // ----------------------------------------------------------------------------
 // Set chip model.
 // ----------------------------------------------------------------------------
+/*
 void SID::set_chip_model(chip_model model)
 {
   voice[0].set_chip_model(model);
@@ -83,7 +84,7 @@ void SID::set_chip_model(chip_model model)
   filter.set_chip_model(model);
   extfilt.set_chip_model(model);
 }
-
+*/
 
 // ----------------------------------------------------------------------------
 // SID reset.

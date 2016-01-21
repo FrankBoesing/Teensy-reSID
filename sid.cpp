@@ -11,7 +11,7 @@
 	GNU General Public License for more details.
 	You should have received a copy of the GNU General Public License
 	along with this library.  If not, see <http://www.gnu.org/licenses/>.
-	The helix decoder itself as a different license, look at the subdirectories for more info.
+
 	Diese Bibliothek ist freie Software: Sie können es unter den Bedingungen
 	der GNU General Public License, wie von der Free Software Foundation,
 	Version 3 der Lizenz oder (nach Ihrer Wahl) jeder neueren
@@ -22,8 +22,7 @@
 	Siehe die GNU General Public License für weitere Details.
 	Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
 	Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
-	Der Helixdecoder selbst hat eine eigene Lizenz, bitte für mehr Informationen
-	in den Unterverzeichnissen nachsehen.
+
  */
 
 #include "reSID/envelope.cc"
@@ -39,11 +38,12 @@
 #include "reSID/wave6581_PS_.cc"
 #include "reSID/wave6581_PST.cc"
 
+/*
 #include "reSID/wave8580__ST.cc" 
 #include "reSID/wave8580_P_T.cc"
 #include "reSID/wave8580_PS_.cc"
 #include "reSID/wave8580_PST.cc"
-
+*/
 #include "reSID/wave.cc"
 
 #include "reSID/sid.cc"

@@ -80,7 +80,7 @@ const fc_point Filter::f0_points_6581[] =
   { 2047, 18000 },   // 0xff 0x07
   { 2047, 18000 }    // 0xff 0x07 - repeated end point
 };
-
+/*
 const fc_point Filter::f0_points_8580[] =
 {
   //  FC      f         FCHI FCLO
@@ -105,7 +105,7 @@ const fc_point Filter::f0_points_8580[] =
   { 2047, 12500 },   // 0xff 0x07
   { 2047, 12500 }    // 0xff 0x07 - repeated end point
 };
-
+*/
 
 // ----------------------------------------------------------------------------
 // Constructor.
@@ -136,11 +136,22 @@ Filter::Filter()
   interpolate(f0_points_6581, f0_points_6581
 	      + sizeof(f0_points_6581)/sizeof(*f0_points_6581) - 1,
 	      PointPlotter<sound_sample>(f0_6581), 1.0);
+/*				
   interpolate(f0_points_8580, f0_points_8580
 	      + sizeof(f0_points_8580)/sizeof(*f0_points_8580) - 1,
 	      PointPlotter<sound_sample>(f0_8580), 1.0);
+*/
+//  set_chip_model(MOS6581);
+{//instead:
+	    mixer_DC = -0xfff*0xff/18 >> 7;
 
-  set_chip_model(MOS6581);
+    f0 = f0_6581;
+    f0_points = f0_points_6581;
+    f0_count = sizeof(f0_points_6581)/sizeof(*f0_points_6581);
+		set_w0();
+    set_Q();
+}
+		
 }
 
 
@@ -156,6 +167,7 @@ void Filter::enable_filter(bool enable)
 // ----------------------------------------------------------------------------
 // Set chip model.
 // ----------------------------------------------------------------------------
+/*
 void Filter::set_chip_model(chip_model model)
 {
   if (model == MOS6581) {
@@ -187,6 +199,7 @@ void Filter::set_chip_model(chip_model model)
   set_w0();
   set_Q();
 }
+*/
 
 
 // ----------------------------------------------------------------------------
