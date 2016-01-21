@@ -193,9 +193,9 @@ protected:
   sound_sample f0_6581[2048];
   sound_sample f0_8580[2048];
   sound_sample* f0;
-  static fc_point f0_points_6581[];
-  static fc_point f0_points_8580[];
-  fc_point* f0_points;
+  const static fc_point f0_points_6581[];
+  const static fc_point f0_points_8580[];
+  const fc_point* f0_points;
   int f0_count;
 
 friend class SID;

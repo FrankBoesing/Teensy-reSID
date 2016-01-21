@@ -44,7 +44,7 @@ RESID_NAMESPACE_START
 // NB! Cutoff frequency characteristics may vary, we have modeled two
 // particular Commodore 64s.
 
-fc_point Filter::f0_points_6581[] =
+const fc_point Filter::f0_points_6581[] =
 {
   //  FC      f         FCHI FCLO
   // ----------------------------
@@ -81,7 +81,7 @@ fc_point Filter::f0_points_6581[] =
   { 2047, 18000 }    // 0xff 0x07 - repeated end point
 };
 
-fc_point Filter::f0_points_8580[] =
+const fc_point Filter::f0_points_8580[] =
 {
   //  FC      f         FCHI FCLO
   // ----------------------------
