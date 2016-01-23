@@ -676,14 +676,14 @@ void SID::clock(cycle_count delta_t)
 // }
 // 
 // ----------------------------------------------------------------------------
-int SID::clock(cycle_count& delta_t, short* buf, int n, int interleave)
+int SID::clock(cycle_count& delta_t, short* buf, int n)
 {
   switch (sampling) {
   default:
   case SAMPLE_FAST:
-    return clock_fast(delta_t, buf, n, interleave);
+    return clock_fast(delta_t, buf, n);
   case SAMPLE_INTERPOLATE:
-    return clock_interpolate(delta_t, buf, n, interleave);
+    return clock_interpolate(delta_t, buf, n);
   }
 }
 
@@ -691,8 +691,7 @@ int SID::clock(cycle_count& delta_t, short* buf, int n, int interleave)
 // SID clocking with audio sampling - delta clocking picking nearest sample.
 // ----------------------------------------------------------------------------
 RESID_INLINE
-int SID::clock_fast(cycle_count& delta_t, short* buf, int n,
-		    int interleave)
+int SID::clock_fast(cycle_count& delta_t, short* buf, int n)
 {
   int s = 0;
 
@@ -708,7 +707,7 @@ int SID::clock_fast(cycle_count& delta_t, short* buf, int n,
     clock(delta_t_sample);
     delta_t -= delta_t_sample;
     sample_offset = (next_sample_offset & FIXP_MASK) - (1 << (FIXP_SHIFT - 1));
-    buf[s++*interleave] = output();
+    buf[s++] = output();
   }
 
   clock(delta_t);
@@ -728,8 +727,7 @@ int SID::clock_fast(cycle_count& delta_t, short* buf, int n,
 // sampling noise.
 // ----------------------------------------------------------------------------
 RESID_INLINE
-int SID::clock_interpolate(cycle_count& delta_t, short* buf, int n,
-			   int interleave)
+int SID::clock_interpolate(cycle_count& delta_t, short* buf, int n)
 {
   int s = 0;
   int i;
@@ -755,7 +753,7 @@ int SID::clock_interpolate(cycle_count& delta_t, short* buf, int n,
     sample_offset = next_sample_offset & FIXP_MASK;
 
     short sample_now = output();
-    buf[s++*interleave] =
+    buf[s++] =
       sample_prev + (sample_offset*(sample_now - sample_prev) >> FIXP_SHIFT);
     sample_prev = sample_now;
   }

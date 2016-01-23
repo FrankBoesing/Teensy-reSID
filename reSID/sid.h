@@ -47,7 +47,7 @@ public:
 
   void clock();
   void clock(cycle_count delta_t);
-  int clock(cycle_count& delta_t, short* buf, int n, int interleave = 1);
+  int clock(cycle_count& delta_t, short* buf, int n);
   void reset();
   
   // Read/write registers.
@@ -90,12 +90,10 @@ public:
 
 protected:
 
-  RESID_INLINE int clock_fast(cycle_count& delta_t, short* buf, int n,
-			      int interleave);
-  RESID_INLINE int clock_interpolate(cycle_count& delta_t, short* buf, int n,
-				     int interleave);
+  RESID_INLINE int clock_fast(cycle_count& delta_t, short* buf, int n);
+  RESID_INLINE int clock_interpolate(cycle_count& delta_t, short* buf, int n);
 
-						 Voice voice[3];
+	Voice voice[3];
   Filter filter;
   ExternalFilter extfilt;
   Potentiometer potx;
