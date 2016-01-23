@@ -27,16 +27,14 @@
 #include "reSID.h"
 #include <AudioStream.h>
 
-#define OVERSAMPLE 23
-
-static SID sid;
+#define SAMPLERATE 44118
+#define CLOCKFREQ (22.5 * SAMPLERATE) //nearest int to 985248
 
 void AudioPlaySID::begin(void)
 {
+	sidptr = &sid;
 	this->reset();
-	 sid.set_sampling_parameters(OVERSAMPLE * AUDIO_SAMPLE_RATE_EXACT, SAMPLE_FAST, AUDIO_SAMPLE_RATE_EXACT); 
-	//sid.set_chip_model(MOS6581);
-	//sid.set_chip_model(MOS8580); 
+	sid.set_sampling_parameters(CLOCKFREQ, SAMPLE_FAST, SAMPLERATE); 
 	playing = true;
 }
 
@@ -52,13 +50,7 @@ void AudioPlaySID::stop(void)
 	__enable_irq();
 }
 
-//inline 
-void AudioPlaySID::setreg(int ofs, int val) {
-	sid.write(ofs, val);
-}
-
 void AudioPlaySID::update(void) {
-unsigned int i;
 	audio_block_t *block;
 
 	// only update if we're playing
@@ -67,11 +59,11 @@ unsigned int i;
 	// allocate the audio blocks to transmit
 	block = allocate();
 	if (block == NULL) return;
-
-	for (i=0;  i< AUDIO_BLOCK_SAMPLES; i++) {
-			sid.clock(OVERSAMPLE);
-			block->data[i] = sid.output();
-	}
+	
+	//I'm not 100% if this is correct:
+	cycle_count delta_t = CLOCKFREQ / (SAMPLERATE / AUDIO_BLOCK_SAMPLES);
+	
+	sidptr->clock(delta_t, (short int*)block->data, AUDIO_BLOCK_SAMPLES);
 
 	transmit(block);
 	release(block);

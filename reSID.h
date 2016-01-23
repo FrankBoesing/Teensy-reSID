@@ -36,14 +36,15 @@ class AudioPlaySID : public AudioStream
 public:
 	AudioPlaySID(void) : AudioStream(0, NULL) { begin(); }
 	void begin(void);
-	//inline 
-	void setreg(int ofs, int val);// { sid.write(ofs, val);}
+	inline void setreg(int ofs, int val) { sid.write(ofs, val); }
 	void reset(void);
 	void stop(void);
-	bool isPlaying(void) { return playing; }	
+	inline bool isPlaying(void) { return playing; }	
 private:
 	volatile bool playing;
 	virtual void update(void);	
+	SID sid;
+	SID* sidptr;
 };
 
 
