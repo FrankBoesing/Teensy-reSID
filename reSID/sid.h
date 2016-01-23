@@ -89,17 +89,13 @@ public:
   int output(int bits);
 
 protected:
-  static float I0(float x);
+
   RESID_INLINE int clock_fast(cycle_count& delta_t, short* buf, int n,
 			      int interleave);
   RESID_INLINE int clock_interpolate(cycle_count& delta_t, short* buf, int n,
 				     int interleave);
-  RESID_INLINE int clock_resample_interpolate(cycle_count& delta_t, short* buf,
-					      int n, int interleave);
-  RESID_INLINE int clock_resample_fast(cycle_count& delta_t, short* buf,
-				       int n, int interleave);
 
-  Voice voice[3];
+						 Voice voice[3];
   Filter filter;
   ExternalFilter extfilt;
   Potentiometer potx;
@@ -133,11 +129,6 @@ protected:
   int fir_N;
   int fir_RES;
 
-  // Ring buffer with overflow for contiguous storage of RINGSIZE samples.
-  short* sample;
-
-  // FIR_RES filter tables (FIR_N*FIR_RES).
-  short* fir;
 };
 
 RESID_NAMESPACE_STOP

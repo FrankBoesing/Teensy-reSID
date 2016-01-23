@@ -148,6 +148,7 @@ Filter::Filter()
     f0 = f0_6581;
     f0_points = f0_points_6581;
     f0_count = sizeof(f0_points_6581)/sizeof(*f0_points_6581);
+		//Serial.print(f0_count);
 		set_w0();
     set_Q();
 }
