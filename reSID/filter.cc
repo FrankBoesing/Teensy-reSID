@@ -43,7 +43,7 @@ RESID_NAMESPACE_START
 //
 // NB! Cutoff frequency characteristics may vary, we have modeled two
 // particular Commodore 64s.
-
+/*
 const fc_point Filter::f0_points_6581[] =
 {
   //  FC      f         FCHI FCLO
@@ -80,6 +80,7 @@ const fc_point Filter::f0_points_6581[] =
   { 2047, 18000 },   // 0xff 0x07
   { 2047, 18000 }    // 0xff 0x07 - repeated end point
 };
+*/
 /*
 const fc_point Filter::f0_points_8580[] =
 {
@@ -131,12 +132,12 @@ Filter::Filter()
   Vnf = 0;
 
   enable_filter(true);
-
+/*	
   // Create mappings from FC to cutoff frequency.
   interpolate(f0_points_6581, f0_points_6581
 	      + sizeof(f0_points_6581)/sizeof(*f0_points_6581) - 1,
 	      PointPlotter<sound_sample>(f0_6581), 1.0);
-/*				
+			
   interpolate(f0_points_8580, f0_points_8580
 	      + sizeof(f0_points_8580)/sizeof(*f0_points_8580) - 1,
 	      PointPlotter<sound_sample>(f0_8580), 1.0);
@@ -145,10 +146,9 @@ Filter::Filter()
 {//instead:
 	    mixer_DC = -0xfff*0xff/18 >> 7;
 
-    f0 = f0_6581;
-    f0_points = f0_points_6581;
-    f0_count = sizeof(f0_points_6581)/sizeof(*f0_points_6581);
-		//Serial.print(f0_count);
+    //f0 = f0_6581;
+   // f0_points = f0_points_6581;		
+   // f0_count = sizeof(f0_points_6581)/sizeof(*f0_points_6581);
 		set_w0();
     set_Q();
 }
@@ -301,12 +301,13 @@ void Filter::set_Q()
 // Return the array of spline interpolation points used to map the FC register
 // to filter cutoff frequency.
 // ----------------------------------------------------------------------------
+/*
 void Filter::fc_default(const fc_point*& points, int& count)
 {
   points = f0_points;
   count = f0_count;
 }
-
+*/
 // ----------------------------------------------------------------------------
 // Given an array of interpolation points p with n points, the following
 // statement will specify a new FC mapping:
@@ -315,9 +316,10 @@ void Filter::fc_default(const fc_point*& points, int& count)
 // and that additional end points *must* be present since the end points
 // are not interpolated.
 // ----------------------------------------------------------------------------
+/*
 PointPlotter<sound_sample> Filter::fc_plotter()
 {
   return PointPlotter<sound_sample>(f0);
 }
-
+*/
 RESID_NAMESPACE_STOP

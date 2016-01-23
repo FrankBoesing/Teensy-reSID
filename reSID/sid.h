@@ -33,7 +33,7 @@ class SID
 public:
   SID();
   ~SID();
-
+	//void printFilter(void);
   //void set_chip_model(chip_model model);
   void enable_filter(bool enable);
   void enable_external_filter(bool enable);
@@ -42,8 +42,8 @@ public:
 			       float filter_scale = 0.97);
   void adjust_sampling_frequency(float sample_freq);
 
-  void fc_default(const fc_point*& points, int& count);
-  PointPlotter<sound_sample> fc_plotter();
+  //void fc_default(const fc_point*& points, int& count);
+  //PointPlotter<sound_sample> fc_plotter();
 
   void clock();
   void clock(cycle_count delta_t);
@@ -85,8 +85,7 @@ public:
 
   // 16-bit output (AUDIO OUT).
   int output();
-  // n-bit output.
-  int output(int bits);
+
 
 protected:
 

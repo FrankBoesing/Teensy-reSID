@@ -55,9 +55,17 @@ SID::SID()
   bus_value_ttl = 0;
 
   ext_in = 0;
+
 }
-
-
+/*
+void SID::printFilter(void){
+		Serial.print(filter.f0_count);
+		for (int i=0; i< 2048; i++) {
+				if (i % 16==0) Serial.println();
+				Serial.printf("0x%04X, ",filter.f0_6581[i]);
+		}
+}
+*/
 // ----------------------------------------------------------------------------
 // Destructor.
 // ----------------------------------------------------------------------------
@@ -114,7 +122,6 @@ void SID::input(int sample)
 
 // ----------------------------------------------------------------------------
 // Read sample from audio output.
-// Both 16-bit and n-bit output is provided.
 // ----------------------------------------------------------------------------
 int SID::output()
 {
@@ -131,20 +138,6 @@ int SID::output()
     return -half;
   }
 	*/
-  return sample;
-}
-
-int SID::output(int bits)
-{
-  const int range = 1 << bits;
-  const int half = range >> 1;
-  int sample = extfilt.output()/((4095*255 >> 7)*3*15*2/range);
-  if (sample >= half) {
-    return half - 1;
-  }
-  if (sample < -half) {
-    return -half;
-  }
   return sample;
 }
 
@@ -530,20 +523,22 @@ void SID::adjust_sampling_frequency(float sample_freq)
 // Return array of default spline interpolation points to map FC to
 // filter cutoff frequency.
 // ----------------------------------------------------------------------------
+/*
 void SID::fc_default(const fc_point*& points, int& count)
 {
   filter.fc_default(points, count);
 }
-
+*/
 
 // ----------------------------------------------------------------------------
 // Return FC spline plotter object.
 // ----------------------------------------------------------------------------
+/*
 PointPlotter<sound_sample> SID::fc_plotter()
 {
   return filter.fc_plotter();
 }
-
+*/
 
 // ----------------------------------------------------------------------------
 // SID clocking - 1 cycle.
@@ -729,6 +724,7 @@ int SID::clock_fast(cycle_count& delta_t, short* buf, int n)
 RESID_INLINE
 int SID::clock_interpolate(cycle_count& delta_t, short* buf, int n)
 {
+
   int s = 0;
   int i;
 
@@ -765,6 +761,7 @@ int SID::clock_interpolate(cycle_count& delta_t, short* buf, int n)
     sample_prev = output();
     clock();
   }
+
   sample_offset -= delta_t << FIXP_SHIFT;
   delta_t = 0;
   return s;

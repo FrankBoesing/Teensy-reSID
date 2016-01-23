@@ -21,7 +21,8 @@
 #define __FILTER_H__
 
 #include "siddefs.h"
-#include "spline.h"
+//#include "spline.h"
+#include "filter6581.h"
 
 RESID_NAMESPACE_START
 
@@ -147,8 +148,8 @@ public:
   sound_sample output();
 
   // Spline functions.
-  void fc_default(const fc_point*& points, int& count);
-  PointPlotter<sound_sample> fc_plotter();
+ // void fc_default(const fc_point*& points, int& count);
+ // PointPlotter<sound_sample> fc_plotter();
 
 protected:
   void set_w0();
@@ -190,13 +191,16 @@ protected:
 
   // Cutoff frequency tables.
   // FC is an 11 bit register.
-  sound_sample f0_6581[2048];
+  //sound_sample f0_6581[2048];
   //sound_sample f0_8580[2048];
-  sound_sample* f0;
-  const static fc_point f0_points_6581[];
+  //sound_sample* f0;
+	//const sound_sample* f0 = filter6581;
+	const short* f0 = filter6581;
+  //const static fc_point f0_points_6581[];
+		
   //const static fc_point f0_points_8580[];
-  const fc_point* f0_points;
-  int f0_count;
+  //const fc_point* f0_points;
+  //int f0_count;
 
 friend class SID;
 };
