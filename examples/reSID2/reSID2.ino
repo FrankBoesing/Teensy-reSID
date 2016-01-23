@@ -1,4 +1,8 @@
 
+
+//Attention, compile with 144MHz, -O2 
+
+
 //#include "tower.h"
 #include <Audio.h>
 #include <Wire.h>
