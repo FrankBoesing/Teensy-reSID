@@ -267,7 +267,7 @@ reg12 WaveformGenerator::output___T()
 {
   reg24 msb = (ring_mod ? accumulator ^ sync_source->accumulator : accumulator)
     & 0x800000;
-  return ((msb ? ~accumulator : accumulator) >> 11) & 0xfff;
+  return ((msb ? ~accumulator : accumulator) >> 11) & 0xffe;
 }
 
 // Sawtooth:

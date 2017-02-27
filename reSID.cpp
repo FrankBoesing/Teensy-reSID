@@ -27,15 +27,21 @@
 #include "reSID.h"
 #include <AudioStream.h>
 
-#define SAMPLERATE 44118
-#define CLOCKFREQ (22.5 * SAMPLERATE) //nearest int to 985248
+
+#define SAMPLERATE AUDIO_SAMPLE_RATE_EXACT
+#define CLOCKFREQ 985248
 
 void AudioPlaySID::begin(void)
 {
 	sidptr = &sid;
 	this->reset();
-	sid.set_sampling_parameters(CLOCKFREQ, SAMPLE_FAST, SAMPLERATE); 
+	setSampleParameters(CLOCKFREQ, SAMPLERATE);
 	playing = true;
+}
+
+void AudioPlaySID::setSampleParameters(unsigned clockfreq, unsigned samplerate) {
+	sid.set_sampling_parameters(clockfreq, SAMPLE_FAST, samplerate); 
+	csdelta = round((float)clockfreq / ((float)samplerate / AUDIO_BLOCK_SAMPLES));
 }
 
 void AudioPlaySID::reset(void)
@@ -59,9 +65,9 @@ void AudioPlaySID::update(void) {
 	// allocate the audio blocks to transmit
 	block = allocate();
 	if (block == NULL) return;
-	
-	//I'm not 100% if this is correct:
-	cycle_count delta_t = CLOCKFREQ / (SAMPLERATE / AUDIO_BLOCK_SAMPLES);
+		
+	//cycle_count delta_t = CLOCKFREQ / (SAMPLERATE / AUDIO_BLOCK_SAMPLES);
+	cycle_count delta_t = csdelta;
 	
 	sidptr->clock(delta_t, (short int*)block->data, AUDIO_BLOCK_SAMPLES);
 
