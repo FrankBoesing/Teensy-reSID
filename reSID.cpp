@@ -39,7 +39,7 @@ void AudioPlaySID::begin(void)
 	playing = true;
 }
 
-void AudioPlaySID::setSampleParameters(unsigned clockfreq, unsigned samplerate) {
+void AudioPlaySID::setSampleParameters(float clockfreq, float samplerate) {
 	sid.set_sampling_parameters(clockfreq, SAMPLE_FAST, samplerate); 
 	csdelta = round((float)clockfreq / ((float)samplerate / AUDIO_BLOCK_SAMPLES));
 }
