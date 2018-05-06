@@ -1,6 +1,6 @@
 
 
-//Attention, compile with 144MHz, -O2 
+//Attention, compile with >=144MHz, -O2 
 
 
 //#include "tower.h"
